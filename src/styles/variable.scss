@@ -10,3 +10,5 @@ $nickname-left-margin: 10px;
 $instantaneous-flow-margin: 15px;
 
 $image-cell-width: (($screen-width - $instantaneous-flow-margin * 2 - $avatar-width - $nickname-left-margin) / 3) - 10;
+
+$default-shadow: 0 0 8px 4px #e5e5e5;

@@ -1,6 +1,6 @@
 Component({
   props: {
-    // share | share1 | like | like-o | share2 | user-circle-o | user | icon-test | jingcaishunjian | activity | activity-light | instantaneous-copy | instantaneous-light-copy | user-light-copy | user-copy
+    // arrow | share | share1 | like | like-o | share2 | user-circle-o | user | icon-test | jingcaishunjian | activity | activity-light | instantaneous-copy | instantaneous-light-copy | user-light-copy | user-copy
     name: null,
     // string | string[]
     color: '',

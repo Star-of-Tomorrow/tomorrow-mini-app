@@ -1,3 +1,6 @@
+<!--arrow-->
+<view wx:if="{{name === 'arrow'}}" style="background-image: url({{quot}}data:image/svg+xml, %3Csvg viewBox='0 0 1152 1024' xmlns='http://www.w3.org/2000/svg' width='{{svgSize}}px' height='{{svgSize}}px'%3E%3Cpath d='M624.576 0 544.128 80.512 976.192 512.032 544.128 943.488 624.576 1024 1136.096 512.032Z' fill='{{(isStr ? colors : colors[0]) || 'rgb(51,51,51)'}}' /%3E%3C/svg%3E{{quot}}); width: {{svgSize}}px; height: {{svgSize}}px; " class="icon" />
+
 <!--share-->
 <view wx:if="{{name === 'share'}}" style="background-image: url({{quot}}data:image/svg+xml, %3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='{{svgSize}}px' height='{{svgSize}}px'%3E%3Cpath d='M625.792 302.912V64L1024 482.112l-398.208 418.176V655.36C341.312 655.36 142.208 750.912 0 960c56.896-298.688 227.584-597.312 625.792-657.088z' fill='{{(isStr ? colors : colors[0]) || 'rgb(255,132,10)'}}' /%3E%3C/svg%3E{{quot}}); width: {{svgSize}}px; height: {{svgSize}}px; " class="icon" />
 
