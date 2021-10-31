@@ -18,18 +18,20 @@ function InstantaneousPage(){
   }, [])
 
   // 渲染列表Item
-  const renderFunc = (item: IInstantaneousItem, index, pageIndex) => {
-    return <InstantaneousCard key={item.id} data={item} />;
+  const renderFunc = (item: IInstantaneousItem, index: number, pageIndex: number) => {
+    return <InstantaneousCard key={String(item.id)} data={item} />;
   }
+
   const handleBottom = () => {
     console.log('触底了')
   }
   const handleComplete = () => {
     console.log('加载完成')
   }
+
   return (
     <View>
-      <Swiper className="basic-swiper" autoplay={1000}>
+      <Swiper className='basic-swiper' autoplay={1000}>
         <Swiper.Item>1</Swiper.Item>
         <Swiper.Item>2</Swiper.Item>
         <Swiper.Item>3</Swiper.Item>
