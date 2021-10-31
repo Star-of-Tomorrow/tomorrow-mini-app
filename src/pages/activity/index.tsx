@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { View } from '@tarojs/components'
-import './activity.scss'
+import './index.scss'
 
 
 function ActivityPage(){

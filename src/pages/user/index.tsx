@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { View } from '@tarojs/components'
-import './user.scss'
+import './index.scss'
 
 
 function UserPage(){
