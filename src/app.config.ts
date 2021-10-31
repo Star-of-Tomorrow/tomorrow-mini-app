@@ -1,7 +1,7 @@
 import { Config } from '@tarojs/taro';
 
 const appConfig: Config = {
-  pages: ["pages/activity/index", "pages/instantaneous/index",  "pages/user/index"],
+  pages: ["pages/instantaneous/index", "pages/activity/index", "pages/user/index"],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#ff840a',
