@@ -9713,6 +9713,11 @@ taro-css-to-react-native@3.3.12:
     css-mediaquery "^0.1.2"
     postcss-value-parser "^3.3.0"
 
+taro-virtual-list@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.npmmirror.com/taro-virtual-list/download/taro-virtual-list-1.0.13.tgz#6511721200bd79f06566c2ecaf3112f77a90b223"
+  integrity sha1-ZRFyEgC9efBlZsLsrzES93qQsiM=
+
 tarojs-plugin-generator@^0.0.21:
   version "0.0.21"
   resolved "https://registry.npmmirror.com/tarojs-plugin-generator/download/tarojs-plugin-generator-0.0.21.tgz#7ec9316ac964178380178242072fa5c127309582"
