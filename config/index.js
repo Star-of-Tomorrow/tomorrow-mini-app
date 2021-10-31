@@ -1,11 +1,15 @@
+
+const path = require('path');
+
 const config = {
   projectName: 'mini-app',
   date: '2021-10-30',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2
+    828: 1.81 / 2,
+    375: 2 / 1
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
@@ -64,6 +68,13 @@ const config = {
       }
     },
     esnextModules: ["@taroify"],
+  },
+  sass: {
+    resource: [
+      'src/styles/variable.scss',
+      '/Users/yidafu/github/tomorrow-mini-app/src/styles/variable.scss',
+    ],
+    projectDirectory: path.resolve(__dirname, '..'),
   }
 }
 

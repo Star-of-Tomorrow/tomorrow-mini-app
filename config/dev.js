@@ -4,6 +4,8 @@ module.exports = {
   },
   defineConstants: {
   },
-  mini: {},
+  mini: {
+    debugReact: true,
+  },
   h5: {}
 }
