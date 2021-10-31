@@ -1,3 +1,24 @@
-.UserPage{
-    
+.user-page {
+    .operate {
+      font-size: 16px;
+      color: #808080;
+
+      iconfont {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .taroify-cell {
+      padding: 5px 25px;
+    }
+
+    .taroify-cell__title {
+      height: 40px;
+    }
+
+    .operate-card {
+      box-shadow: $default-shadow;
+      margin: 20px 0;
+    }
 }
