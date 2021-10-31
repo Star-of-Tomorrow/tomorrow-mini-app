@@ -1,0 +1,12 @@
+$theme-color: #ff840a;
+
+$text-color: #505050;
+
+$divide-line-color: #d6d6d6;
+
+$screen-width: 375px;
+$avatar-width: 35px;
+$nickname-left-margin: 10px;
+$instantaneous-flow-margin: 15px;
+
+$image-cell-width: (($screen-width - $instantaneous-flow-margin * 2 - $avatar-width - $nickname-left-margin) / 3) - 10;

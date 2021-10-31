@@ -1,4 +1,5 @@
 import { Config } from '@tarojs/taro';
+import { useGlobalIconFont } from './components/iconfont/helper';
 
 const appConfig: Config = {
   pages: ["pages/instantaneous/index", "pages/activity/index", "pages/user/index"],
@@ -31,7 +32,9 @@ const appConfig: Config = {
         selectedIconPath: "assets/image/user.png",
       }
     ]
-  }
+  },
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  usingComponents: Object.assign({}, useGlobalIconFont())
 };
 
 export default appConfig;
