@@ -1,6 +1,6 @@
 Component({
   properties: {
-    // arrow | share | share1 | like | like-o | share2 | user-circle-o | user | icon-test | jingcaishunjian | activity | activity-light | instantaneous-copy | instantaneous-light-copy | user-light-copy | user-copy
+    // dot | dot-end | localhost | dian | arrow | share | share1 | like | like-o | share2 | user-circle-o | user | icon-test | jingcaishunjian | activity | activity-light | instantaneous-copy | instantaneous-light-copy | user-light-copy | user-copy
     name: {
       type: String,
     },
@@ -16,7 +16,7 @@ Component({
     },
     size: {
       type: Number,
-      value: 20,
+      value: 40,
       observer: function(size) {
         this.setData({
           svgSize: size / 750 * wx.getSystemInfoSync().windowWidth,
@@ -26,7 +26,7 @@ Component({
   },
   data: {
     colors: '',
-    svgSize: 20 / 750 * wx.getSystemInfoSync().windowWidth,
+    svgSize: 40 / 750 * wx.getSystemInfoSync().windowWidth,
     quot: '"',
     isStr: true,
   },

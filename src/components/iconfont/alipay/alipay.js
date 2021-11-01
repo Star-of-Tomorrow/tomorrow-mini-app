@@ -1,15 +1,15 @@
 Component({
   props: {
-    // arrow | share | share1 | like | like-o | share2 | user-circle-o | user | icon-test | jingcaishunjian | activity | activity-light | instantaneous-copy | instantaneous-light-copy | user-light-copy | user-copy
+    // dot | dot-end | localhost | dian | arrow | share | share1 | like | like-o | share2 | user-circle-o | user | icon-test | jingcaishunjian | activity | activity-light | instantaneous-copy | instantaneous-light-copy | user-light-copy | user-copy
     name: null,
     // string | string[]
     color: '',
-    size: 20,
+    size: 40,
   },
   data: {
     colors: '',
     quot: '"',
-    svgSize: 20,
+    svgSize: 40,
     isStr: true,
   },
   didMount() {
