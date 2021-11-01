@@ -1,0 +1,17 @@
+.sudoku {
+
+  .image-cell {
+    width: $image-cell-width;
+    height: $image-cell-width;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .image-cell:nth-child(3n) {
+    margin-left: 0;
+  }
+  .image-cell:nth-child(n+7) {
+    margin-bottom: 0;
+  }
+}
