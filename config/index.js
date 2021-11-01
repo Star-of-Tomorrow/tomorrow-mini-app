@@ -4,7 +4,7 @@ const path = require('path');
 const config = {
   projectName: 'mini-app',
   date: '2021-10-30',
-  designWidth: 375,
+  designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,

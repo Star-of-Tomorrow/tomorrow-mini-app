@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useCallback } from 'react'
 import { View, Image, Text } from '@tarojs/components'
 import IconFont from '../../../../components/iconfont'
+import Sudoku from '../../../../components/sudoku'
 
 import './index.scss';
 
@@ -77,11 +78,7 @@ export default function InstantaneousCard(props: InstantaneousCardProps): ReactE
         <View>
           <Text className='graphic-text'>{graphic.text}</Text>
         </View>
-        <View className='graphic-images'>
-          {graphic.images.map((imgUrl) => (
-            <Image className='image-cell' key={imgUrl} src={imgUrl} />
-          ))}
-        </View>
+        <Sudoku images={graphic.images} />
       </View>
 
       <View className='i-footer'>

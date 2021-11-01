@@ -4,11 +4,11 @@ $text-color: #505050;
 
 $divide-line-color: #d6d6d6;
 
-$screen-width: 375px;
-$avatar-width: 35px;
-$nickname-left-margin: 10px;
-$instantaneous-flow-margin: 15px;
+$screen-width: 750px;
+$avatar-width: 70px;
+$nickname-left-margin: 20px;
+$instantaneous-flow-margin: 30px;
 
-$image-cell-width: (($screen-width - $instantaneous-flow-margin * 2 - $avatar-width - $nickname-left-margin) / 3) - 10;
+$image-cell-width: (($screen-width - $instantaneous-flow-margin * 2 - $avatar-width - $nickname-left-margin) / 3) - 20;
 
-$default-shadow: 0 0 8px 4px #e5e5e5;
+$default-shadow: 0 0 16px 8px #e5e5e5;

@@ -1,6 +1,6 @@
 
 .instantaneos-card {
-  margin: 10px $instantaneous-flow-margin 0 $instantaneous-flow-margin;
+  margin: 20px $instantaneous-flow-margin 0 $instantaneous-flow-margin;
   border-bottom: 1px solid $divide-line-color;
 
   .i-header {
@@ -14,7 +14,7 @@
 
     .nickname {
       margin-left: $nickname-left-margin;
-      font-size: 16px;
+      font-size: 32px;
       font-weight: bold;
       color: $theme-color;
     }
@@ -23,10 +23,10 @@
 
   .i-body {
     margin-left: $avatar-width + $nickname-left-margin;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     .graphic-text {
-      font-size: 14px;
+      font-size: 28px;
       color: $text-color;
     }
 
@@ -35,8 +35,8 @@
       .image-cell {
         width: $image-cell-width;
         height: $image-cell-width;
-        margin-right: 5px;
-        margin-bottom: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
         overflow: hidden;
       }
 
@@ -50,19 +50,19 @@
   }
 
   .i-footer {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     margin-left: $avatar-width + $nickname-left-margin;
     display: flex;
     justify-content: space-between;
 
     .publish-time {
       color: #808080;
-      font-size: 12px;
+      font-size: 24px;
     }
 
     .operation {
       display: flex;
-      width: 50px;
+      width: 100px;
       justify-content: space-around;
     }
   }
