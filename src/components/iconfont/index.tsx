@@ -3,7 +3,7 @@
 
 import React, { FunctionComponent } from 'react';
 
-export type IconNames = 'arrow' | 'share' | 'share1' | 'like' | 'like-o' | 'share2' | 'user-circle-o' | 'user' | 'icon-test' | 'jingcaishunjian' | 'activity' | 'activity-light' | 'instantaneous-copy' | 'instantaneous-light-copy' | 'user-light-copy' | 'user-copy';
+export type IconNames = 'dot' | 'dot-end' | 'localhost' | 'dian' | 'arrow' | 'share' | 'share1' | 'like' | 'like-o' | 'share2' | 'user-circle-o' | 'user' | 'icon-test' | 'jingcaishunjian' | 'activity' | 'activity-light' | 'instantaneous-copy' | 'instantaneous-light-copy' | 'user-light-copy' | 'user-copy';
 
 export interface IconProps {
   name: IconNames;

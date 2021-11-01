@@ -3,7 +3,7 @@ import React from 'react'
 import { View, Navigator } from '@tarojs/components'
 import { Cell } from '@taroify/core';
 import AvatarCard from './components/avatar-card';
-import IconFont from '../../components/iconfont'
+import IconFont from '../../components/iconfont';
 import './index.scss'
 
 
@@ -21,7 +21,7 @@ function UserPage(){
             className='operate'
             size='medium'
             title='我的感动瞬间'
-            rightIcon={<IconFont name='arrow' size={15} />}
+            rightIcon={<IconFont name='arrow' size={20} />}
           />
         </Navigator>
         <Navigator url='/pages/my-like/index' >
@@ -29,7 +29,7 @@ function UserPage(){
             className='operate'
             size='medium'
             title='我的喜欢'
-            rightIcon={<IconFont name='arrow' size={15} />}
+            rightIcon={<IconFont name='arrow' size={20} />}
           />
         </Navigator>
         </View>
@@ -40,7 +40,7 @@ function UserPage(){
           className='operate'
           size='medium'
           title='我的机构'
-          rightIcon={<IconFont name='arrow' size={15} />}
+          rightIcon={<IconFont name='arrow' size={20} />}
         />
         </Navigator>
       </View>
@@ -49,13 +49,13 @@ function UserPage(){
           className='operate'
           size='medium'
           title='关于我们'
-          rightIcon={<IconFont name='arrow' size={15} />}
+          rightIcon={<IconFont name='arrow' size={20} />}
         />
         <Cell
           className='operate'
           size='medium'
           title='联系我们'
-          rightIcon={<IconFont name='arrow' size={15} />}
+          rightIcon={<IconFont name='arrow' size={20} />}
         />
       </View>
   </View>

@@ -1,6 +1,6 @@
 .user-page {
     .operate {
-      font-size: 16px;
+      font-size: 32px;
       color: #808080;
 
       iconfont {
@@ -9,16 +9,9 @@
       }
     }
 
-    .taroify-cell {
-      padding: 5px 25px;
-    }
-
-    .taroify-cell__title {
-      height: 40px;
-    }
 
     .operate-card {
       box-shadow: $default-shadow;
-      margin: 20px 0;
+      margin: 40px 0;
     }
 }

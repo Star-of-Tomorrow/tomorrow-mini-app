@@ -1,10 +1,10 @@
 {
-    "symbol_url": "//at.alicdn.com/t/font_2904296_rjxn0pmqy5.js",
+    "symbol_url": "//at.alicdn.com/t/font_2904296_e9hb1w7t20h.js",
     "save_dir": "./src/components/iconfont",
     "use_typescript": true,
     "platforms": ["weapp", "alipay"],
     "use_rpx": true,
     "trim_icon_prefix": "gy",
-    "default_icon_size": 20,
+    "default_icon_size": 40,
     "design_width": 375
 }
