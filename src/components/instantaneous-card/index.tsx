@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useCallback } from 'react'
 import { View, Image, Text } from '@tarojs/components'
-import IconFont from '../../../../components/iconfont'
-import Sudoku from '../../../../components/sudoku'
+import IconFont from '../iconfont'
+import Sudoku from '../sudoku'
 
 import './index.scss';
 
