@@ -5,6 +5,7 @@ const appConfig: Config = {
   pages: [
     "pages/instantaneous/index",
     "pages/activity/index",
+    "pages/activity-create/index",
     "pages/user/index",
     "pages/institution/index",
     "pages/my-like/index",
