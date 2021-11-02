@@ -1,14 +1,82 @@
 .activity-defailt-page {
-  // .taroify-steps--vertical {
-  //   padding: 0 0 0 120px;
-  // }
-    .activity-item-text {
-      font-size: 32px;
-      color: #505050;
+
+  .activity-detail {
+    box-shadow: $default-shadow;
+
+    .activity-institution {
+      display: flex;
+      align-items: center;
+      padding: 20px 30px;
+
+      .institution-avatar {
+        width: 70px;
+        height: 70px;
+      }
+
+      .institution-name {
+        margin-left: 20px;
+        color: rgba(128, 128, 128, 1);
+        font-size: 30px;
+        font-weight: 500;
+      }
     }
 
-    .sudoku-contailer {
-      display: flex;
-      justify-content: center;
+    .activity-body {
+      padding-left: 60px;
+
+      .activity-text-container {
+        padding: 10px 0 20px;
+      }
+
+      .activity-item-text {
+        font-size: 32px;
+        color: #505050;
+      }
+
+      .activity-date {
+        font-size: 24px;
+        color: #808080;
+      }
+
+      .sudoku-contailer {
+        display: flex;
+        justify-content: center;
+      }
     }
+  }
+
+  .comments-area {
+    box-shadow: $default-shadow;
+    margin: 50px 0 150px;
+    padding: 20px 30px;
+
+    .comments-header {
+      padding: 10px 0;
+
+      .commments-header-text {
+        font-size: 32px;
+        font-weight: 700;
+        color: #ff8d1a;
+      }
+      border-bottom: 1px solid #d6d6d6;
+    }
+  }
+
+  .comments-operate {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 99;
+    background-color: #fff;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    box-shadow: $default-shadow;
+
+    iconfont {
+      margin-right: 50px;
+    }
+  }
 }

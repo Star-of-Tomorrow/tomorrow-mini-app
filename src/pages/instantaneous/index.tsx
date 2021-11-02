@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Swiper } from "@taroify/core"
 import { TaroVirtualList } from 'taro-virtual-list'
 import { View } from '@tarojs/components'
-import InstantaneousCard, { IInstantaneousItem } from './componensts/instantaneous-card';
+import InstantaneousCard, { IInstantaneousItem } from '../../components/instantaneous-card';
 
 import './index.scss'
 
