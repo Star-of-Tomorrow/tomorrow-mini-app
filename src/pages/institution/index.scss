@@ -45,12 +45,17 @@
       border-bottom: rgba(229, 229, 229, 1) solid 2px;
       text-align: center;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
       .institution-card-item-photo {
         width: 74px;
         height: 74px;
+      }
+
+      iconfont {
+        width: 80px;
       }
     }
   }

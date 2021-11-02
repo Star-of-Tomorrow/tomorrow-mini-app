@@ -10,52 +10,40 @@ function InstitutionPage() {
       <View className='institution-info'>
         <Image
           className='institution-photo'
-          src='assets/image/user-light.png'
+          src='https://pic3.zhimg.com/aadd7b895_xs.jpg'
         />
         <View className='institution-name'>此处机构名</View>
       </View>
 
       <View className='institution-card'>
-        <View className='institution-card-item'>
-          <Navigator url='/pages/activity-create/index'>
-            <Image
-              className='institution-card-item-photo'
-              src='assets/image/user-light.png'
-            />
-            <View className='operate'>新建活动</View>
-          </Navigator>
-        </View>
+        <Navigator url='/pages/activity-create/index'>
+          <View className='institution-card-item'>
+                <IconFont name='create' size={70} />
+              <View className='operate'>新建活动</View>
+          </View>
+        </Navigator>
 
-        <View className='institution-card-item'>
-          <Navigator url='/pages/activity/index'>
-            <Image
-              className='institution-card-item-photo'
-              src='../../assets/image/user-light.png'
-            />
+        <Navigator url='/pages/activity/index'>
+          <View className='institution-card-item'>
+            <IconFont name='list' size={70} />
             <View className='operate'>活动列表</View>
-          </Navigator>
-        </View>
+          </View>
+        </Navigator>
 
-        <View className='institution-card-item'>
-          <Navigator url='/pages/institution-manage/index'>
-            <Image
-              className='institution-card-item-photo'
-              src='../../assets/image/user-light.png'
-            />
+        <Navigator url='/pages/institution-manage/index'>
+          <View className='institution-card-item'>
+            <IconFont name='admin' size={70} />
             <View className='operate'>管理员</View>
-          </Navigator>
-        </View>
+          </View>
+        </Navigator>
 
-        <View className='institution-card-item'>
-          <Navigator url='/pages/activity-detail-message/index'>
-            <Image
-              className='institution-card-item-photo'
-              src='../../assets/image/user-light.png'
-            />
+        <Navigator url='/pages/activity-detail-message/index'>
+          <View className='institution-card-item'>
+            <IconFont name='comments' size={70} />
             <View className='operate'>留言</View>
-          </Navigator>
-        </View>
-      </View>
+          </View>
+        </Navigator>
+      </View>``
     </View>
   );
 }
