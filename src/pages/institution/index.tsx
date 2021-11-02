@@ -37,7 +37,7 @@ function InstitutionPage() {
         </View>
 
         <View className='institution-card-item'>
-          <Navigator url='/pages/institution/index'>
+          <Navigator url='/pages/institution-manage/index'>
             <Image
               className='institution-card-item-photo'
               src='../../assets/image/user-light.png'
@@ -47,7 +47,7 @@ function InstitutionPage() {
         </View>
 
         <View className='institution-card-item'>
-          <Navigator url='/pages/institution/index'>
+          <Navigator url='/pages/activity-detail-message/index'>
             <Image
               className='institution-card-item-photo'
               src='../../assets/image/user-light.png'

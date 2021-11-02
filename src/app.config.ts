@@ -8,9 +8,11 @@ const appConfig: Config = {
     "pages/activity-create/index",
     "pages/user/index",
     "pages/institution/index",
+    "pages/institution-manage/index",
     "pages/my-like/index",
     "pages/my-instantaneous/index",
     "pages/activity-detail/index",
+    "pages/activity-detail-message/index",
   ],
   window: {
     backgroundTextStyle: 'light',
