@@ -1,14 +1,41 @@
 .activity-defailt-page {
-  // .taroify-steps--vertical {
-  //   padding: 0 0 0 120px;
-  // }
-    .activity-item-text {
-      font-size: 32px;
-      color: #505050;
+
+  .activity-detail {
+    box-shadow: $default-shadow;
+
+    .activity-institution {
+      display: flex;
+      align-items: center;
+      padding: 20px 30px;
+
+      .institution-avatar {
+        width: 70px;
+        height: 70px;
+      }
+
+      .institution-name {
+        margin-left: 20px;
+        color: rgba(128, 128, 128, 1);
+        font-size: 30px;
+      }
     }
 
-    .sudoku-contailer {
-      display: flex;
-      justify-content: center;
+    .activity-body {
+      padding-left: 60px;
+
+      .activity-text-container {
+        padding: 10px 0 20px;
+      }
+
+      .activity-item-text {
+        font-size: 32px;
+        color: #505050;
+      }
+
+      .sudoku-contailer {
+        display: flex;
+        justify-content: center;
+      }
     }
+  }
 }

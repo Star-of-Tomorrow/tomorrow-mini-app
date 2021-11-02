@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import { Steps } from "@taroify/core"
 import Sudoku from '../../components/sudoku'
 import IconFont from '../../components/iconfont';
@@ -10,6 +10,7 @@ const mockData = {
   step: 2,
   intitution: {
     name: '机构名词',
+    avatar: 'https://pic3.zhimg.com/aadd7b895_xs.jpg',
   },
   list: [{
     id: 1,
@@ -42,16 +43,30 @@ const mockData = {
 
 function IndexPage(){
   return <View className='activity-defailt-page page'>
-    <Steps direction='vertical' value={mockData.step}>
-      {mockData.list.map((step, idx) => (
-        <Steps.Step icon={<IconFont  name={idx === 0 ? 'localhost' : idx === mockData.list.length - 1 ? 'dot-end' : 'dot'} />} key={step.id}>
-          <View className='step-container'>
-            <Text className='activity-item-text'>{step.text}</Text>
-              <Sudoku images={step.images} />
-            </View>
-        </Steps.Step>
-      ))}
-    </Steps>
+    <View className="activity-detail" >
+
+    <View className='activity-institution'>
+      <Image className='institution-avatar' src={mockData.intitution.avatar} />
+      <Text className='institution-name'>{mockData.intitution.name}</Text>
+    </View>
+    <View className='activity-body'>
+      <Steps direction='vertical' value={mockData.step}>
+        {mockData.list.map((step, idx) => (
+          <Steps.Step icon={<IconFont  name={idx === 0 ? 'localhost' : idx === mockData.list.length - 1 ? 'dot-end' : 'dot'} />} key={step.id}>
+            <View className='step-container'>
+              <View className='activity-text-container'>
+                <Text className='activity-item-text'>{step.text}</Text>
+              </View>
+                <Sudoku images={step.images} />
+              </View>
+          </Steps.Step>
+        ))}
+      </Steps>
+    </View>
+    </View>
+    <View className="comments-area">
+
+    </View>
   </View>
 }
 
