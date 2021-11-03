@@ -36,7 +36,7 @@ function CreateActivityPage() {
       <View className='institution-info'>
         <Image
           className='institution-photo'
-          src='assets/image/user-light.png'
+          src='https://pic3.zhimg.com/aadd7b895_xs.jpg'
         />
         <View className='institution-name'>此处机构名</View>
       </View>
@@ -52,7 +52,7 @@ function CreateActivityPage() {
           <View className='example-body'>
             <Image
               className='upload-img'
-              src='assets/image/user-light.png'
+              src='https://pic3.zhimg.com/aadd7b895_xs.jpg'
               onClick={uploafImage}
             />
           </View>
