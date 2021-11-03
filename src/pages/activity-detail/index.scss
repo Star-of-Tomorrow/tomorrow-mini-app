@@ -23,8 +23,10 @@
 
     .activity-body {
       padding-left: 60px;
+    }
+  }
 
-      .activity-text-container {
+        .activity-text-container {
         padding: 10px 0 20px;
       }
 
@@ -42,9 +44,6 @@
         display: flex;
         justify-content: center;
       }
-    }
-  }
-
   .comments-area {
     box-shadow: $default-shadow;
     margin: 50px 0 150px;

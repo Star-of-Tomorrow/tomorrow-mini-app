@@ -3,6 +3,8 @@ import { request } from "../utils";
 import { IUser } from "./user";
 
 export interface IActivity {
+  id: string;
+
   creator: IUser;
 
   activityName: string;
@@ -39,7 +41,7 @@ export function createActivity(activityData: IActivity) {
  * @param {number} activityId
  */
 export function getActivityById(activityId: number) {
-  return request({
+  return request<IInformationDTO>({
     url: `/operation/activity/${activityId}`,
     method: 'GET',
   });
@@ -52,8 +54,8 @@ export function getActivityById(activityId: number) {
  * @param {number} userId
  */
 export function getActivityByUser(userId: number) {
-  return request({
-    url: `/operation/activity/${userId}`,
+  return request<IInformationDTO>({
+    url: `/operation/activityByUserId/${userId}`,
     method: 'GET',
   });
 }
@@ -64,31 +66,63 @@ export function getActivityByUser(userId: number) {
  * @export
  */
 export function getAllActivity() {
-  return request({
+  return request<IInformationDTO[]>({
     url: '/operation/activity/all',
     method: 'GET',
   });
 }
 
 export interface IComment {
+  id: string;
+
   content: string;
+
+  urls?: string[];
+
+  createTime: string;
 }
 
-export interface InformationDTO {
+export interface IInformationDTO {
   userId: string;
+
+  informationId: string;
 
   informationName: string;
 
   informationContent: string;
 
-  urls: string;
+  urls: string[];
 
-  comments: IComment[];
+  comments?: IComment[];
 
-  informationType: string;
+  informationType: InformationTypeEnum;
+
+  createTime: string;
 }
 
-export function createComments(comment: IComment) {
+export enum InformationTypeEnum {
+  ACTIVITY = 'activity',
+
+  INFORMATION = 'information',
+}
+
+// export interface IInformation {
+//   creator: IUser;
+
+//   activityName: string;
+
+//   activityContent: string;
+
+//   urls: string[];
+
+//   comments: IComment[];
+
+//   createTime: string;
+
+//   informationType: InformationTypeEnum;
+// }
+
+export function createComments(comment: IInformationDTO) {
   return request({
     url: '/operation/comments',
     method: 'POST',
@@ -102,11 +136,46 @@ export function createComments(comment: IComment) {
  * @export
  * @param {number} userId
  */
-export function getCommentsByUser(userId: number) {
-
-  return request({
+export function getCommentsByUser(userId: string) {
+  return request<IComment[]>({
     url: `/operation/comments/${userId}`,
     method: "GET",
   });
 }
 
+
+export function getLikedInstantaneous(): Promise<IInformationDTO[]> {
+  return request<IInformationDTO[]>({
+    url: `/operation/queryUserLike`,
+    method: 'GET',
+  })
+}
+
+export interface ILikeParam {
+  userId: string;
+  informationId: string;
+}
+
+export function likeInstantaneous(param: ILikeParam) {
+  return request<boolean>({
+    url: '/operation/giveLike',
+    method: 'POST',
+    data: param,
+  });
+}
+
+export function unlikeInstantaneous(param: ILikeParam) {
+  return request<boolean>({
+    url: '/operation/deleteLike',
+    method: 'POST',
+    data: param,
+  });
+}
+
+
+export function getShuffling(type: string) {
+  return request<IInformationDTO[]>({
+    url: '/operation/shuffling',
+    method: 'GET'
+  })
+}
