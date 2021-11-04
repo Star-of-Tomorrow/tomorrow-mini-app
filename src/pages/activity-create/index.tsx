@@ -1,12 +1,33 @@
 import React from "react";
-
 import { View, Image, Form, Input, Textarea, Button } from "@tarojs/components";
+import { createActivity, IActivity } from "../../api/opearation";
 import "./index.scss";
 
 function CreateActivityPage() {
   const formSubmit = (e) => {
     // TODO: fabu
-    console.log(12, e);
+    const activityData: IActivity = {
+      // creator: {
+      //   userId: string;
+
+      //   userName: string;
+
+      //   userPicUrl: string;
+
+      //   type: string;
+      // };
+
+      activityName: e.detail.value.title,
+
+      activityContent: e.detail.value.content,
+
+      // 图片地址
+      // urls: string[],
+      // comments: IComment[];
+      createTime: Date(),
+    };
+    console.log(12, e.detail.value);
+    createActivity(activityData);
   };
 
   const uploafImage = () => {
@@ -44,10 +65,19 @@ function CreateActivityPage() {
       <View className='create-form'>
         <Form onSubmit={formSubmit}>
           <View className='example-body'>
-            <Input type='text' placeholder='请输入活动标题' className='title' />
+            <Input
+              type='text'
+              name='title'
+              placeholder='请输入活动标题'
+              className='title'
+            />
           </View>
           <View className='example-body'>
-            <Textarea placeholder='请输入活动内容 ...' className='content' />
+            <Textarea
+              name='content'
+              placeholder='请输入活动内容 ...'
+              className='content'
+            />
           </View>
           <View className='example-body'>
             <Image

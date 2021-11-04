@@ -3,16 +3,16 @@ import { request } from "../utils";
 import { IUser } from "./user";
 
 export interface IActivity {
-  creator: IUser;
+  creator?: IUser;
 
   activityName: string;
 
   activityContent: string;
 
   // 图片地址
-  urls: string[];
+  urls?: string[];
 
-  comments: IComment[];
+  comments?: IComment[];
 
   createTime: string;
 }

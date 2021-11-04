@@ -3,14 +3,17 @@ import InstantaneousCard, {
   IInstantaneousItem,
 } from "../../components/instantaneous-card";
 import { TaroVirtualList } from 'taro-virtual-list'
+import { Pagination } from "@taroify/core"
 import { View } from '@tarojs/components'
 import "./index.scss";
+
 
 import mockData from "./mock/flow.json";
 
 function MessagePage() {
   // 模拟list数据
   const [list, setList] = useState<IInstantaneousItem[]>([]);
+  const [current, setCurrent] = useState<number>(1)
 
   // 设置list
   useEffect(() => {
@@ -39,6 +42,7 @@ function MessagePage() {
           },
         }}
       />
+      <Pagination current={current} count={10} onChange={(page) => setCurrent(page)} />
 
     </View>
   );
