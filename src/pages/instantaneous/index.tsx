@@ -3,6 +3,7 @@ import { Swiper } from "@taroify/core"
 import { TaroVirtualList } from 'taro-virtual-list'
 import { View } from '@tarojs/components'
 import InstantaneousCard, { IInstantaneousItem } from '../../components/instantaneous-card';
+import { get } from '../../api/opearation'
 
 import './index.scss'
 
@@ -14,6 +15,7 @@ function InstantaneousPage(){
 
   // 设置list
   useEffect(() => {
+
     setList(mockData as unknown as IInstantaneousItem[])
   }, [])
 
