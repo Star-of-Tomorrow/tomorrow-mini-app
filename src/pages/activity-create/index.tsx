@@ -1,55 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, Form, Input, Textarea, Button } from "@tarojs/components";
+import { chooseImage } from "@tarojs/taro";
+import { Uploader } from "@taroify/core";
 import { createActivity, IActivity } from "../../api/opearation";
 import "./index.scss";
 
 function CreateActivityPage() {
+  const [files, setFiles] = useState<Uploader.File[]>([]);
+
   const formSubmit = (e) => {
-    // TODO: fabu
+    let urlsRes: string[] = [];
+
+    files.forEach((item: { url: string }) => {
+      urlsRes.push(item.url);
+    });
+
+    // TODO: 发布 id
     const activityData: IActivity = {
-      // creator: {
-      //   userId: string;
+      // id: string;
 
-      //   userName: string;
-
-      //   userPicUrl: string;
-
-      //   type: string;
-      // };
+      // creator: IUser;
 
       activityName: e.detail.value.title,
-
       activityContent: e.detail.value.content,
-
       // 图片地址
-      // urls: string[],
-      // comments: IComment[];
+      urls: urlsRes,
+      // comments?: IComment[];
       createTime: Date(),
     };
-    console.log(12, e.detail.value);
     createActivity(activityData);
+    // TODO: 发布结束的跳转问题
   };
 
   const uploafImage = () => {
-    // TODO: upload
-    console.log("上传");
-    // Taro.chooseImage({
-    //   success(res) {
-    //     const tempFilePaths = res.tempFilePaths;
-    //     Taro.uploadFile({
-    //       url: "https://example.weixin.qq.com/upload", //仅为示例，非真实的接口地址
-    //       filePath: tempFilePaths[0],
-    //       name: "file",
-    //       formData: {
-    //         user: "test",
-    //       },
-    //       success(res) {
-    //         const data = res.data;
-    //         //do something
-    //       },
-    //     });
-    //   },
-    // });
+    chooseImage({
+      count: 1,
+      sizeType: ["original", "compressed"],
+      sourceType: ["album", "camera"],
+    }).then(({ tempFiles }) => {
+      setFiles([
+        ...files,
+        ...tempFiles.map(({ path, type, originalFileObj }) => ({
+          type,
+          url: path,
+          name: originalFileObj?.name,
+        })),
+      ]);
+    });
   };
 
   return (
@@ -80,10 +77,12 @@ function CreateActivityPage() {
             />
           </View>
           <View className='example-body'>
-            <Image
+            <Uploader
+              value={files}
+              multiple
+              onUpload={uploafImage}
+              onChange={setFiles}
               className='upload-img'
-              src='https://pic3.zhimg.com/aadd7b895_xs.jpg'
-              onClick={uploafImage}
             />
           </View>
           <View className='example-body'>
