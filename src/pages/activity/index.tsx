@@ -2,10 +2,24 @@ import React, { useRef, useState, useEffect } from 'react'
 import { nextTick } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components'
 import { List, Loading } from '@taroify/core';
-import ActivityCard, { IActivity } from './components/activity-card'
+import ActivityCard from './components/activity-card'
 import './index.scss'
 
-import mockData from './mock/activities.json';
+import { getAllActivity, IActivity, IInformationDTO, IUser } from '../../api';
+
+let id = 1;
+function createMockData(count: number = 5): IInformationDTO[] {
+  return Array<IInformationDTO>(count).fill(1 as any).map((_val, idx) => ({
+    informationId: String(idx),
+    userId: '1234',
+    informationContent: 'string',
+    comments: [],
+    informationName: '测试用活动-' + idx,
+    createTime: '2021-10-23 12:00:00',
+    informationType: 'activity',
+    urls: ['https://up.enterdesk.com/edpic_source/ac/be/90/acbe90329993dabacbd2fa5e6078b3c7.jpg']
+  }));
+}
 
 function ActivityPage(){
   const hasMoreRef = useRef(true);
@@ -13,7 +27,12 @@ function ActivityPage(){
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    listRef.current.push(...mockData);
+
+    getAllActivity().then((data) => {
+      console.log(data);
+      data = createMockData(5)
+      listRef.current.push(...data);
+    });
   }, [])
   return (
     <List
@@ -25,7 +44,7 @@ function ActivityPage(){
           setLoading(true)
           setTimeout(() => {
             for (let i = 0; i < 10; i++) {
-              listRef.current.push(...mockData)
+              listRef.current.push(...createMockData(5))
             }
             listRef.current = [...listRef.current]
             hasMoreRef.current = listRef.current.length < 12

@@ -1,19 +1,23 @@
 import { Config } from '@tarojs/taro';
 
 import { useGlobalIconFont } from './components/iconfont/helper';
+
 const appConfig: Config = {
   pages: [
     "pages/instantaneous/index",
     "pages/activity/index",
-    "pages/activity-create/index",
     "pages/user/index",
     "pages/institution/index",
-    "pages/institution-manage/index",
     "pages/my-like/index",
     "pages/my-instantaneous/index",
     "pages/activity-detail/index",
+    "pages/create-instantaneous/index",
+    "pages/activity-create/index",
+    "pages/institution-manage/index",
+    "pages/my-instantaneous/index",
     "pages/activity-detail-message/index",
   ],
+
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#ff840a',

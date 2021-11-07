@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { Swiper } from "@taroify/core"
 import { TaroVirtualList } from 'taro-virtual-list'
-import { View } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import InstantaneousCard, { IInstantaneousItem } from '../../components/instantaneous-card';
+import { Carousel } from '../../components/carousel';
+
+import { createInformationDTO } from '../mock/index'
 
 import './index.scss'
 
 import mockData from './mock/flow.json';
+import { getAllIntantaneous, getShuffling, IInformationDTO, InformationTypeEnum } from '../../api';
+import { PublishBall } from '../../components/publish-ball';
+
 
 function InstantaneousPage(){
   // 模拟list数据
-  const [list, setList] = useState<IInstantaneousItem[]>([])
+  const [list, setList] = useState<IInformationDTO[]>([]);
 
   // 设置list
-  useEffect(() => {
-    setList(mockData as unknown as IInstantaneousItem[])
+    useEffect(() => {
+      getAllIntantaneous()
+        .then(data => {
+          console.log('所有瞬间 ==> %o', data);
+          setList([createInformationDTO(), createInformationDTO(), createInformationDTO()]);
+        })
+    // setList(mockData as unknown as IInstantaneousItem[])
   }, [])
 
   // 渲染列表Item
-  const renderFunc = (item: IInstantaneousItem, index: number, pageIndex: number) => {
-    return <InstantaneousCard key={String(item.id)} data={item} />;
+  const renderFunc = (item: IInformationDTO, index: number, pageIndex: number) => {
+    return <InstantaneousCard key={String(item.informationId)} data={item} />;
   }
 
   const handleBottom = () => {
@@ -31,12 +42,7 @@ function InstantaneousPage(){
 
   return (
     <View>
-      <Swiper className='basic-swiper' autoplay={1000}>
-        <Swiper.Item>1</Swiper.Item>
-        <Swiper.Item>2</Swiper.Item>
-        <Swiper.Item>3</Swiper.Item>
-        <Swiper.Item>4</Swiper.Item>
-      </Swiper>
+      <Carousel />
       <TaroVirtualList
         list={list}
         segmentNum={25}
@@ -49,6 +55,7 @@ function InstantaneousPage(){
           },
         }}
       />
+      <PublishBall />
     </View>
   )
 }
