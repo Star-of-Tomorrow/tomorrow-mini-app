@@ -37,14 +37,6 @@ function createData(): IInformationDTO {
   }
 }
 
-function createUser(): IUser {
-  return {
-    userId: '1',
-    userName: '机构名称',
-    userPicUrl: 'https://pic3.zhimg.com/aadd7b895_xs.jpg',
-    type: 'institution',
-  }
-}
 
 function createComment(): IComment[] {
   return [

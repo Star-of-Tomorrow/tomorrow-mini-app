@@ -1,7 +1,7 @@
 import { PageConfig } from '@tarojs/taro'
 
 const config :PageConfig=  {
-  navigationBarTitleText: '机构主页'
+  navigationBarTitleText: '新建活动'
 }
 
 export default config
