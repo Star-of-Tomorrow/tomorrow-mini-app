@@ -43,7 +43,7 @@ function InstitutionPage() {
             <View className='operate'>留言</View>
           </View>
         </Navigator>
-      </View>``
+      </View>
     </View>
   );
 }

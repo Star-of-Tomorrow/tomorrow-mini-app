@@ -12,9 +12,9 @@ export interface IActivity {
   activityContent: string;
 
   // 图片地址
-  urls: string[];
+  urls?: string[];
 
-  comments: IComment[];
+  comments?: IComment[];
 
   createTime: string;
 }
