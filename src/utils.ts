@@ -20,6 +20,7 @@ export function request<T>(options: taroRequest.Option): Promise<T> {
         reject(resp?.data?.message || '网络错误');
       }
     }
+    // resolve({} as T);
     taroRequest({
       ...options,
       dataType: 'json',

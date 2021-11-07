@@ -1,9 +1,13 @@
-import React, { ReactElement, useState, useCallback } from 'react'
+import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { View, Image, Text } from '@tarojs/components'
 import IconFont from '../iconfont'
 import Sudoku from '../sudoku'
 
 import './index.scss';
+import { LikeHeart } from '../like-heart';
+import { getUser, IInformationDTO, IUser } from '../../api';
+import { DEFAUL_IMAGE_URL } from '../constants';
+import { createUser } from '../../pages/mock';
 
 declare var wx: any;
 
@@ -30,23 +34,32 @@ export interface IInstantaneousItem {
 }
 
 export interface InstantaneousCardProps {
-  data: IInstantaneousItem;
+  data: IInformationDTO;
   key: string;
 }
 
 export default function InstantaneousCard(props: InstantaneousCardProps): ReactElement {
   const [count, setCount] = useState<number>(1);
+  const [user, setUser] = useState<Partial<IUser>>({});
   const { data, key } = props;
 
-  const { id, publisher, graphic, publishTime, isLiked, likeCount } = data;
+  const { informationId, userId, urls, createTime, informationName, informationContent, comments } = data;
 
   const handleLike = useCallback(function handleLike() {
     console.log('handle click');
-    data.isLiked = !data.isLiked;
+    // data.isLiked = !data.isLiked;
     setCount(count + 1);
   }, [count, data]);
 
-
+  useEffect(() => {
+    if (userId) {
+      getUser(userId)
+        .then((userData) => {
+          console.log('用户数据 ==> %o', userData);
+          setUser(createUser());
+        })
+    }
+  }, [userId])
   const shareInstantaneous = function shareInstantaneous() {
     console.log('转发瞬间');
     (wx as any).showShareMenu({
@@ -70,23 +83,21 @@ export default function InstantaneousCard(props: InstantaneousCardProps): ReactE
   return (
     <View key={key} className='instantaneos-card'>
       <View className='i-header'>
-        <Image className='avatar' src={publisher.avatar} />
-        <Text className='nickname'>{publisher.nickname}</Text>
+        <Image className='avatar' mode='aspectFit' src={user.userPicUrl ?? DEFAUL_IMAGE_URL} />
+        <Text className='nickname'>{user.userName ?? '未知用户'}</Text>
       </View>
 
       <View className='i-body'>
         <View>
-          <Text className='graphic-text'>{graphic.text}</Text>
+          <Text className='graphic-text'>{informationContent}</Text>
         </View>
-        <Sudoku images={graphic.images} />
+        <Sudoku images={urls ?? []} />
       </View>
 
       <View className='i-footer'>
-        <Text className='publish-time'>{publishTime}</Text>
+        <Text className='publish-time'>{createTime}</Text>
         <View className='operation'>
-          <View onClick={handleLike} >
-            <IconFont name={isLiked ? 'like' : 'like-o'} />
-          </View>
+          <LikeHeart infoId={String(informationId)} />
           <View onClick={shareInstantaneous}>
             <IconFont name='share' />
           </View>
