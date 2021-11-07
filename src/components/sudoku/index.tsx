@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Image } from '@tarojs/components'
-import classnames from 'classnames'
 import './index.scss'
 
 export interface SudokuProps  {
@@ -9,7 +8,7 @@ export interface SudokuProps  {
 
 export default function Sudoku(props:SudokuProps){
   const {
-    images,
+    images = [],
   } = props
   return <View className='sudoku'>
     {images.map((imgUrl) => (

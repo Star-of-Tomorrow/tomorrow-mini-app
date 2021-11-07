@@ -26,14 +26,14 @@ export interface IActivity {
  * @param {IActivity} activityData
  * @returns
  */
-export function createActivity(activityData: IActivity) {
+export function createActivity(instantaneousData: Partial<IInformationDTO>) {
+  instantaneousData.informationType = InformationTypeEnum.ACTIVITY;
   return request({
-    url: '/operation/activity',
-    method: 'POST',
-    data: activityData,
+    url: '/operation/createInformation',
+    method: "POST",
+    data: instantaneousData,
   });
 }
-
 /**
  * 查询单个活动内容
  *
@@ -72,6 +72,12 @@ export function getAllActivity() {
   });
 }
 
+export function getAllIntantaneous() {
+  return request<IInformationDTO>({
+    url: '/operation/information/all',
+    method: 'GET',
+  })
+}
 export interface IComment {
   id: string;
 
@@ -91,13 +97,13 @@ export interface IInformationDTO {
 
   informationContent: string;
 
-  urls: string[];
+  urls?: string[];
 
   comments?: IComment[];
 
   informationType: InformationTypeEnum;
 
-  createTime: string;
+  createTime?: string;
 }
 
 export enum InformationTypeEnum {
@@ -127,6 +133,15 @@ export function createComments(comment: IInformationDTO) {
     url: '/operation/comments',
     method: 'POST',
     data: comment,
+  });
+}
+
+export function createInstantaneous(instantaneousData: Partial<IInformationDTO>) {
+  instantaneousData.informationType = InformationTypeEnum.INFORMATION;
+  return request({
+    url: '/operation/createInformation',
+    method: "POST",
+    data: instantaneousData,
   });
 }
 
@@ -173,9 +188,9 @@ export function unlikeInstantaneous(param: ILikeParam) {
 }
 
 
-export function getShuffling(type: string) {
+export function getShuffling(type: InformationTypeEnum) {
   return request<IInformationDTO[]>({
-    url: '/operation/shuffling',
+    url: '/operation/shuffling?type=' + type,
     method: 'GET'
   })
 }

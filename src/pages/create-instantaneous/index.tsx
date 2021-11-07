@@ -1,43 +1,84 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { chooseImage } from '@tarojs/taro';
-import { View, Input } from '@tarojs/components'
-import { Uploader, Button } from "@taroify/core"
-import './index.scss'
-import UploaderImage from '@taroify/core/uploader/uploader-image';
+import { View, Textarea, BaseEventOrig } from '@tarojs/components'
+import { Uploader, Button, Toast } from "@taroify/core"
 
+import './index.scss'
+import { TextareaProps } from '@tarojs/components/types/Textarea';
+import toast from '@taroify/core/toast';
+import { createInstantaneous, uploadImage } from '../../api';
 
 function IndexPage(){
+  const [context, setContext] = useState('');
+  const [files, setFiles] = useState<Uploader.File[]>([]);
 
-  const [file, setFile] = useState<Uploader.File>()
   function handleUploadImage() {
     chooseImage({
-      count: 1,
+      count: 9,
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
-    }).then(({ tempFiles }) => {
-      // setFile({
-      //   url: tempFiles[0].path,
-      //   type: tempFiles[0].type,
-      //   name: tempFiles[0].originalFileObj?.name,
-      // })
+    }).then((res) => {
+      res?.tempFiles?.forEach(async (tempFile) => {
+        const data = await uploadImage(tempFile.path);
+        setFiles([
+          ...files,
+          {
+            type: tempFile.type,
+            url: data[0],
+            name: tempFile.originalFileObj?.name
+          },
+        ]);
+      })
     })
   }
 
+  function handleTextInput(evt: BaseEventOrig<TextareaProps.onInputEventDetail>) {
+    console.log('瞬间文案 ==> ', evt);
+    setContext(evt.detail.value);
+  }
+
+  const handlePublishInstantance = useCallback(function handlePublishInstantance() {
+    const urls = files.map(file => file.url).filter(Boolean) as string[];
+    if (urls?.length === 0) {
+      Toast.open({ type: 'fail', message: '请先选择图片' });
+      return
+    }
+    if (!context) {
+      Toast.open({ type: 'fail', message: '请先输入内容' });
+      return;
+    }
+
+    createInstantaneous({
+      userId: '1',
+      informationContent: context,
+      informationName: '用户名',
+      urls: urls ?? [],
+    })
+  }, [files, context]);
+
   return <View className='create-instantaneous page'>
     <View className='publish-row'>
-      <Input className='instantaneous-textarea'  type='text' placeholder='请输入你的公益精彩瞬间' placeholderClass='placeholder' />
+      <Textarea
+        className='instantaneous-textarea'
+        placeholder='请输入你的公益精彩瞬间'
+        placeholderClass='placeholder'
+        onInput={handleTextInput}
+      />
     </View>
     <View className='publish-row'>
       <Uploader
-        value={file}
+        value={files}
         onUpload={handleUploadImage}
-        onChange={setFile}
+        onChange={setFiles}
       />
     </View>
     <View className='publish-row publish-btn'>
-      <Button variant="contained" color='warning'>发布</Button>
+      <Button variant='contained' color='warning' onClick={handlePublishInstantance}>发布</Button>
     </View>
+
+
+    <Toast id='toast' />
   </View>
 }
 

@@ -5,11 +5,11 @@ import { List, Loading } from '@taroify/core';
 import ActivityCard from './components/activity-card'
 import './index.scss'
 
-import { getAllActivity, IActivity, InformationDTO, IUser } from '../../api';
+import { getAllActivity, IActivity, IInformationDTO, IUser } from '../../api';
 
 let id = 1;
-function createMockData(count: number = 5): InformationDTO[] {
-  return Array<InformationDTO>(count).fill(1 as any).map((_val, idx) => ({
+function createMockData(count: number = 5): IInformationDTO[] {
+  return Array<IInformationDTO>(count).fill(1 as any).map((_val, idx) => ({
     informationId: String(idx),
     userId: '1234',
     informationContent: 'string',
