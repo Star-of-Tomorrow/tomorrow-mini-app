@@ -1,0 +1,28 @@
+.create-instantaneous {
+  padding: 30px 50px;
+
+  .publish-row {
+    margin-top: 30px;
+  }
+
+  .instantaneous-textarea {
+    width: 610px;
+    height: 200px;
+    text-indent: 5px;
+    border-radius: 5px;
+    font-size: 24px;
+    padding: 20px;
+    border: #999999 solid 1px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .placeholder {
+    color: #a6a6a6;
+  }
+
+  .publish-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
