@@ -33,8 +33,12 @@ function InstitutionPage() {
         <View className='list-title'>
           <View className='title'>管理员列表</View>
           {/* TODO: 添加管理员 */}
-          <View className='icon' onClick={addManage}>
-            <IconFont name='admin' size={60} />
+          <View className='icon'>
+            <Button
+              variant='text'
+              icon={<IconFont name='admin' size={50} />}
+              onClick={addManage}
+            />
           </View>
         </View>
         <List className='list-con'>

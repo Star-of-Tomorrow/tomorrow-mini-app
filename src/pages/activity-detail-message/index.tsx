@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { TaroVirtualList } from "taro-virtual-list";
+import { View, Button, Navigator } from "@tarojs/components";
 import InstantaneousCard, {
   IInstantaneousItem,
 } from "../../components/instantaneous-card";
-import { TaroVirtualList } from 'taro-virtual-list'
-import { Pagination } from "@taroify/core"
-import { View } from '@tarojs/components'
-import "./index.scss";
 
+import "./index.scss";
 
 import mockData from "./mock/flow.json";
 
 function MessagePage() {
   // 模拟list数据
   const [list, setList] = useState<IInstantaneousItem[]>([]);
-  const [current, setCurrent] = useState<number>(1)
 
   // 设置list
   useEffect(() => {
+    // 获取留言
+    // 通过分页形式，设置留言数
     setList(mockData as unknown as IInstantaneousItem[]);
   }, []);
   // 渲染列表Item
@@ -29,7 +29,6 @@ function MessagePage() {
   };
   return (
     <View className='MessagePage page'>
-      {/* TODO: 分页 */}
       <TaroVirtualList
         list={list}
         segmentNum={25}
@@ -42,8 +41,10 @@ function MessagePage() {
           },
         }}
       />
-      <Pagination current={current} count={10} onChange={(page) => setCurrent(page)} />
 
+      <Navigator url='/pages/activity-detail-message-publish/index'>
+        <Button className='publish-message'>发布留言</Button>
+      </Navigator>
     </View>
   );
 }
