@@ -73,7 +73,7 @@ export function getAllActivity() {
 }
 
 export function getAllIntantaneous() {
-  return request<IInformationDTO>({
+  return request<IInformationDTO[]>({
     url: '/operation/information/all',
     method: 'GET',
   })

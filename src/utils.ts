@@ -6,7 +6,7 @@ export interface IResponseWrapper<T> {
   message?: string;
 }
 
-const BASE_URL = 'http://localhost:9090/demo'
+export const BASE_URL = 'http://175.27.239.242:9090/demo/'
 export function request<T>(options: taroRequest.Option): Promise<T> {
   return new Promise((resolve, reject) => {
     options.url = BASE_URL + options.url;

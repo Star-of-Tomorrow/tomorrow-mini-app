@@ -1,6 +1,15 @@
+import { getStorageSync, login, setStorageSync, showToast } from "@tarojs/taro";
 import { request } from "../utils";
 
 export interface IUser {
+  institutionsName: null
+
+  openId: string;
+
+  unionId: string;
+
+  updateTime: string;
+
   userId: string;
 
   userName: string;
@@ -25,17 +34,78 @@ export function getUser(userId: string) {
 }
 
 export function isAdmin() {
-  request({
+  return request({
     url: '/operation/PermissionVerify',
     method: "POST",
   })
 }
 
-
-
-export function wxLogin() {
+export function updateUserInfo(user: IUser) {
   return request({
-    url: '/user/wx/login',
-    method: 'POST',
+    url: '/user/userInformation',
+    method: "POST",
+    data: user,
+  });
+}
+
+
+export interface WxUserInfo {
+  avatarUrl: string;
+  city: string;
+  country: string;
+  gender: number,
+  nickName: string;
+  language: string;
+  province: string;
+}
+
+export function wxLogin(userInfo: WxUserInfo): Promise<IUser> {
+  return new Promise((resolve, reject) => {
+    login({
+      success: function (res) {
+        if (res.code) {
+          //发起网络请求
+            request<IUser>({
+              url: '/user/wx/login?code=' + res.code,
+              method: 'POST',
+            })
+              .then((data) => {
+                const user = {
+                  ...data,
+                  userName: userInfo.nickName,
+                  userPicUrl: userInfo.avatarUrl,
+                };
+                updateUserInfo(user);
+                showToast({ title: '登录成功' });
+                resolve(user);
+              })
+              .catch(err => {
+                showToast({ title: '登录失败' });
+                console.error(err);
+                reject("登录失败");
+              });
+        } else {
+          showToast({ title: '登录失败' });
+          reject("登录失败");
+        }
+      },
+      fail({ errMsg }) {
+        showToast({
+          title: errMsg || '登录失败'
+        });
+        reject("登录失败");
+      }
+    });
   })
+}
+
+
+export function setCurrentUser(user: IUser) {
+  console.log('set current user ==>', user);
+  setStorageSync('local.user', user);
+}
+
+export function getCurrentUser(): IUser {
+  console.log('get current user ==>', getStorageSync('local.user'));
+  return getStorageSync('local.user');
 }

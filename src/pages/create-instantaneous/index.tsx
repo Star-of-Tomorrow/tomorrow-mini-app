@@ -4,10 +4,10 @@ import { chooseImage } from '@tarojs/taro';
 import { View, Textarea, BaseEventOrig } from '@tarojs/components'
 import { Uploader, Button, Toast } from "@taroify/core"
 
-import './index.scss'
 import { TextareaProps } from '@tarojs/components/types/Textarea';
-import toast from '@taroify/core/toast';
 import { createInstantaneous, uploadImage } from '../../api';
+
+import './index.scss'
 
 function IndexPage(){
   const [context, setContext] = useState('');
@@ -21,11 +21,12 @@ function IndexPage(){
     }).then((res) => {
       res?.tempFiles?.forEach(async (tempFile) => {
         const data = await uploadImage(tempFile.path);
+        console.log('image url:', data);
         setFiles([
           ...files,
           {
             type: tempFile.type,
-            url: data[0],
+            url: data,
             name: tempFile.originalFileObj?.name
           },
         ]);

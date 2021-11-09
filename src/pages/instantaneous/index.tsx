@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Swiper } from "@taroify/core"
 import { TaroVirtualList } from 'taro-virtual-list'
-import { View, Image } from '@tarojs/components'
-import InstantaneousCard, { IInstantaneousItem } from '../../components/instantaneous-card';
+import { View } from '@tarojs/components'
+import InstantaneousCard from '../../components/instantaneous-card';
 import { Carousel } from '../../components/carousel';
-
-import { createInformationDTO } from '../mock/index'
-
-import './index.scss'
-
-import mockData from './mock/flow.json';
-import { getAllIntantaneous, getShuffling, IInformationDTO, InformationTypeEnum } from '../../api';
+import { getAllIntantaneous, IInformationDTO } from '../../api';
 import { PublishBall } from '../../components/publish-ball';
 
+import './index.scss'
 
 function InstantaneousPage(){
   // 模拟list数据
@@ -23,7 +17,8 @@ function InstantaneousPage(){
       getAllIntantaneous()
         .then(data => {
           console.log('所有瞬间 ==> %o', data);
-          setList([createInformationDTO(), createInformationDTO(), createInformationDTO()]);
+          setList(data)
+          // setList([createInformationDTO(), createInformationDTO(), createInformationDTO()]);
         })
     // setList(mockData as unknown as IInstantaneousItem[])
   }, [])

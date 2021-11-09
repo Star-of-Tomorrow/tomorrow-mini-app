@@ -26,7 +26,7 @@ function LikeHeart(props:LikeHeartProps){
     }
   }
 
-  return <View onClick={handleLike} >
+  return <View className='like-heart-comp' onClick={handleLike} >
     <IconFont name={isLiked ? 'like' : 'like-o'} />
   </View>
 }

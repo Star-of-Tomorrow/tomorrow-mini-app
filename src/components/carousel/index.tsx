@@ -28,8 +28,8 @@ function Carousel(props:CarouselProps){
     getShuffling(InformationTypeEnum.ACTIVITY)
       .then(data => {
         console.log('轮播图数据', data);
-        data = createShuffling();
-        console.log(data);
+        // data = createShuffling();
+        // console.log(data);
         setShulffings(data);
       })
   }, [])
