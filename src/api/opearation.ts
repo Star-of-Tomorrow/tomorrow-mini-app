@@ -38,11 +38,11 @@ export function createActivity(instantaneousData: Partial<IInformationDTO>) {
  * 查询单个活动内容
  *
  * @export
- * @param {number} activityId
+ * @param {number} infoId
  */
-export function getActivityById(activityId: number) {
+export function getActivityById(infoId: string) {
   return request<IInformationDTO>({
-    url: `/operation/activity/${activityId}`,
+    url: `/operation/activity/${infoId}`,
     method: 'GET',
   });
 }
@@ -65,9 +65,9 @@ export function getActivityByUser(userId: number) {
  *
  * @export
  */
-export function getAllActivity() {
+export function getAllActivity(type?: InformationTypeEnum) {
   return request<IInformationDTO[]>({
-    url: '/operation/activity/all',
+    url: '/operation/information/all?type=' + type,
     method: 'GET',
   });
 }
@@ -78,14 +78,12 @@ export function getAllIntantaneous() {
     method: 'GET',
   })
 }
-export interface IComment {
-  id: string;
 
-  content: string;
-
-  urls?: string[];
-
-  createTime: string;
+export function getIntantaneouseByUser(userId: string) {
+  return request<IInformationDTO[]>({
+    url: '/operation/informationByUserId/' + userId,
+    method: 'GET',
+  });
 }
 
 export interface IInformationDTO {
@@ -128,7 +126,22 @@ export enum InformationTypeEnum {
 //   informationType: InformationTypeEnum;
 // }
 
-export function createComments(comment: IInformationDTO) {
+export enum CommentType {
+  COMMNET = 'comment',
+  PROGRESS = 'progress',
+}
+
+export interface IComment {
+  id?: string;
+  content: string,
+  informationId: string,
+  type: CommentType,
+  urls: string[],
+  userId: string,
+  createTime?: string,
+}
+
+export function createComments(comment: IComment) {
   return request({
     url: '/operation/comments',
     method: 'POST',
@@ -159,10 +172,11 @@ export function getCommentsByUser(userId: string) {
 }
 
 
-export function getLikedInstantaneous(): Promise<IInformationDTO[]> {
+export function getLikedInstantaneous(userId: string): Promise<IInformationDTO[]> {
   return request<IInformationDTO[]>({
     url: `/operation/queryUserLike`,
-    method: 'GET',
+    method: 'POST',
+    data: { userId },
   })
 }
 
@@ -193,4 +207,25 @@ export function getShuffling(type: InformationTypeEnum) {
     url: '/operation/shuffling?type=' + type,
     method: 'GET'
   })
+}
+
+export function isInstitutionUser(userId) {
+  return request<boolean>({
+    url: '/user/getUserInstitutions?userId=' + userId,
+    method: 'GET'
+  });
+}
+export interface IInstitution {
+    createTime: string,
+    id: number,
+    institutionsId: string,
+    institutionsName: string,
+    updateTime: string
+    url: string;
+}
+export function getInstitution(institutionId: string) {
+  return request<IInstitution>({
+    url: '/user/getInstitutions?institutionId=' + institutionId,
+    method: 'GET',
+  });
 }

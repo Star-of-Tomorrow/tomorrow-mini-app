@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Image, Form, Input, Textarea, Button } from "@tarojs/components";
-import { chooseImage } from "@tarojs/taro";
+import { chooseImage, showToast } from "@tarojs/taro";
 import { Uploader } from "@taroify/core";
-import { createActivity, IActivity } from "../../api/opearation";
+import { createActivity, getInstitution, IActivity, IInformationDTO, IInstitution } from "../../api/opearation";
 import "./index.scss";
+import { getCurrentUser, uploadImage } from "../../api";
+import { DEFAUL_IMAGE_URL } from "../../components/constants";
 
 function CreateActivityPage() {
   const [files, setFiles] = useState<Uploader.File[]>([]);
+  const [institution, setInstitution] = useState<Partial<IInstitution>>({})
+  useEffect(() => {
+    const user = getCurrentUser()
+    if (!user) {
+      return showToast({ title: "请先登录", icon: 'none' });
+    }
+    getInstitution(user.type).then((institutionInfo) => {
+      setInstitution(institutionInfo)
+    })
+  }, []);
 
   const formSubmit = (e) => {
     let urlsRes: string[] = [];
@@ -16,19 +28,24 @@ function CreateActivityPage() {
     });
 
     // TODO: 发布 id
-    const activityData: IActivity = {
+    const activityData: Partial<IInformationDTO> = {
       // id: string;
 
       // creator: IUser;
+      userId: getCurrentUser().userId,
 
-      activityName: e.detail.value.title,
-      activityContent: e.detail.value.content,
+      informationName: e.detail.value.title,
+      informationContent: e.detail.value.content,
+
       // 图片地址
       urls: urlsRes,
       // comments?: IComment[];
-      createTime: Date(),
+      // createTime: Date(),
     };
-    createActivity(activityData);
+    createActivity(activityData)
+      .then(() => {
+        showToast({ title: '创建成功' });
+      });
     // TODO: 发布结束的跳转问题
   };
 
@@ -37,15 +54,18 @@ function CreateActivityPage() {
       count: 1,
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
-    }).then(({ tempFiles }) => {
-      setFiles([
-        ...files,
-        ...tempFiles.map(({ path, type, originalFileObj }) => ({
-          type,
-          url: path,
-          name: originalFileObj?.name,
-        })),
-      ]);
+    }).then(async ({ tempFiles }) => {
+      tempFiles?.forEach(async (tempFile) => {
+        const data = await uploadImage(tempFile.path);
+        setFiles([
+          ...files,
+          ...tempFiles.map(({ path, type, originalFileObj }) => ({
+            type,
+            url: data,
+            name: originalFileObj?.name,
+          })),
+        ]);
+      });
     });
   };
 
@@ -54,9 +74,9 @@ function CreateActivityPage() {
       <View className='institution-info'>
         <Image
           className='institution-photo'
-          src='https://pic3.zhimg.com/aadd7b895_xs.jpg'
+          src={institution?.url ?? DEFAUL_IMAGE_URL}
         />
-        <View className='institution-name'>此处机构名</View>
+        <View className='institution-name'>{institution?.institutionsName}</View>
       </View>
 
       <View className='create-form'>

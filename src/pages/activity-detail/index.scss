@@ -74,6 +74,11 @@
     height: 100px;
     box-shadow: $default-shadow;
 
+    .create-comment {
+      display: flex;
+      align-items: center;
+    }
+
     iconfont {
       margin-right: 50px;
     }

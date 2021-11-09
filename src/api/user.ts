@@ -33,10 +33,10 @@ export function getUser(userId: string) {
   });
 }
 
-export function isAdmin() {
+export function isAdmin(infoId: string, userId: string) {
   return request({
-    url: '/operation/PermissionVerify',
-    method: "POST",
+    url: `/operation/PermissionVerify?informationId=${infoId}&userId=${userId}`,
+    method: "GET",
   })
 }
 
@@ -80,18 +80,19 @@ export function wxLogin(userInfo: WxUserInfo): Promise<IUser> {
                 resolve(user);
               })
               .catch(err => {
-                showToast({ title: '登录失败' });
+                showToast({ title: '登录失败', icon: 'none' });
                 console.error(err);
                 reject("登录失败");
               });
         } else {
-          showToast({ title: '登录失败' });
+          showToast({ title: '登录失败', icon: 'none' });
           reject("登录失败");
         }
       },
       fail({ errMsg }) {
         showToast({
-          title: errMsg || '登录失败'
+          title: errMsg || '登录失败',
+          icon: 'none'
         });
         reject("登录失败");
       }

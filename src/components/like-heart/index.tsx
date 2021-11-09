@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { View } from '@tarojs/components'
-import { getApp } from '@tarojs/taro'
+import { getApp, showToast } from '@tarojs/taro'
 
 import IconFont from '../iconfont'
-import { likeInstantaneous, unlikeInstantaneous } from '../../api'
+import { getCurrentUser, likeInstantaneous, unlikeInstantaneous } from '../../api'
 
 import './index.scss'
 
@@ -16,13 +16,16 @@ function LikeHeart(props:LikeHeartProps){
   const { infoId } = props
   async function handleLike() {
     console.log('调用瞬间');
-    const userId = getApp()?.user?.userId ?? '0';
+    const user = getCurrentUser();
+    if (!user?.userId) {
+      return showToast({ title: "请先登录", icon: 'none' });
+    }
     if (isLiked) {
       setisLiked(false);
-      await unlikeInstantaneous({userId, informationId: infoId});
+      await unlikeInstantaneous({userId: user.userId, informationId: infoId});
     } else {
       setisLiked(true);
-      await likeInstantaneous({ userId, informationId: infoId });
+      await likeInstantaneous({ userId: user.userId, informationId: infoId });
     }
   }
 

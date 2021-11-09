@@ -3,9 +3,23 @@ import { View, Image, Navigator } from "@tarojs/components";
 import { Button, List } from "@taroify/core";
 import IconFont from "../../components/iconfont";
 import "./index.scss";
+import { getCurrentUser, getInstitution, IInstitution } from "../../api";
+import { showToast } from "@tarojs/taro";
+import { DEFAUL_IMAGE_URL } from "../../components/constants";
 
 function InstitutionPage() {
   const [managerInfo, setManagerInfo] = useState<string[]>([]);
+  const [institution, setInstitution] = useState<Partial<IInstitution>>({})
+  useEffect(() => {
+    const user = getCurrentUser()
+    if (!user) {
+      return showToast({ title: "请先登录", icon: 'none' });
+    }
+    getInstitution(user.type)
+      .then((institutionInfo) => {
+        setInstitution(institutionInfo)
+      })
+  }, []);
   // 获取管理员信息
   useEffect(() => {
     // TODO
@@ -14,6 +28,7 @@ function InstitutionPage() {
 
   const cancelPermission = (id?: string) => {
     console.log("取消权限", id);
+    setManagerInfo(managerInfo.filter(name => name !== id));
   };
 
   const addManage = () => {
@@ -24,9 +39,9 @@ function InstitutionPage() {
       <View className='institution-info'>
         <Image
           className='institution-photo'
-          src='https://pic3.zhimg.com/aadd7b895_xs.jpg'
+          src={institution.url ?? DEFAUL_IMAGE_URL}
         />
-        <View className='institution-name'>此处机构名</View>
+        <View className='institution-name'>{institution.institutionsName}</View>
       </View>
 
       <View className='institution-manage-list'>
@@ -49,6 +64,7 @@ function InstitutionPage() {
                   className='btn'
                   plain={false}
                   size='mini'
+                  value={item}
                   onClick={cancelPermission} // TODO：取消
                   hoverStyle='none'
                 >

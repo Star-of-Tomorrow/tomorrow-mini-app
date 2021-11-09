@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { View, Navigator } from '@tarojs/components'
-import { getApp, getUserProfile, login, request, showToast } from '@tarojs/taro'
+import { getApp, getUserProfile, login, navigateTo, request, showToast } from '@tarojs/taro'
 import { Cell } from '@taroify/core';
 import AvatarCard from './components/avatar-card';
 import IconFont from '../../components/iconfont';
 import { BASE_URL } from '../../utils';
 
 import './index.scss'
-import { getCurrentUser, IUser, setCurrentUser, updateUserInfo, wxLogin } from '../../api';
+import { getCurrentUser, isInstitutionUser, IUser, setCurrentUser, updateUserInfo, wxLogin } from '../../api';
 
 function UserPage(){
   const [user, setUser] = useState<Partial<IUser>>({});
@@ -38,6 +38,19 @@ function UserPage(){
       setUser(user);
     }
   }, []);
+
+  async function handleJumpInstitution() {
+    const user = getCurrentUser();
+    if (!user) {
+      return showToast({ title: '请先登录', icon: 'none' });
+    }
+    const isAdmin = await isInstitutionUser(user.userId);
+    if (!isAdmin) {
+      return showToast({ title: '你不是管理员', icon: 'none' });
+    }
+
+    navigateTo({ url: '/pages/institution/index'})
+  }
 
   return (
     <View className='user-page page'>
@@ -69,15 +82,14 @@ function UserPage(){
         </View>
 
       <View className='operate-card'>
-      <Navigator url='/pages/institution/index' >
         <Cell
+          onClick={handleJumpInstitution}
           className='operate'
           size='medium'
           title='我的机构'
           rightIcon={<IconFont name='arrow' size={20} />}
         />
-      </Navigator>
-        </View>
+      </View>
         <View className='operate-card'>
           <Cell
             className='operate'

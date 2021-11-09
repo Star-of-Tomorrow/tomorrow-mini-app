@@ -1,7 +1,7 @@
 import { PageConfig } from '@tarojs/taro'
 
 const config :PageConfig=  {
-  navigationBarTitleText: '我的感动瞬间'
+  navigationBarTitleText: '活动列表',
 }
 
 export default config

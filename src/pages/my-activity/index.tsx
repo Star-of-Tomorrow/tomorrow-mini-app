@@ -5,7 +5,7 @@ import { List, Loading } from '@taroify/core';
 import ActivityCard from './components/activity-card'
 import './index.scss'
 
-import { getAllActivity, IActivity, IInformationDTO, InformationTypeEnum, IUser } from '../../api';
+import { getAllActivity, IActivity, IInformationDTO, IUser } from '../../api';
 
 function ActivityPage(){
   const hasMoreRef = useRef(true);
@@ -13,7 +13,8 @@ function ActivityPage(){
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getAllActivity(InformationTypeEnum.ACTIVITY).then((data) => {
+
+    getAllActivity().then((data) => {
       console.log(data);
       listRef.current.push(...data);
     });
@@ -27,14 +28,9 @@ function ActivityPage(){
         nextTick(() => {
           setLoading(true)
           setTimeout(() => {
-            getAllActivity(InformationTypeEnum.ACTIVITY).then((data) => {
-              console.log(data);
-              // listRef.current.push(...data);
-              listRef.current = [...listRef.current]
-              hasMoreRef.current = false;
-              setLoading(false)
-            });
-          }, 100);
+            hasMoreRef.current = false;
+            setLoading(false)
+          }, 1000);
         })
       }}
     >

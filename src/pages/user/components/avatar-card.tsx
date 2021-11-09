@@ -16,11 +16,14 @@ export interface IAvatarProps  {
 export default function AvatarCard(props:IAvatarProps){
   const { userInfo, onClick } = props
   return <View onClick={onClick} className='avatar-card'>
-      <View className='user-avatar'>
+    <Image className='user-avatar' src={userInfo.avatar} />
+    <View className='nickname'>{userInfo.nickname}</View>
+
+      {/* <View className='user-avatar'>
         <OpenData  type='userAvatarUrl' defaultAvatar={userInfo.avatar} />
       </View>
       <View className='nickname'>
         <OpenData type='userNickName' />
-      </View>
+      </View> */}
   </View>
 }

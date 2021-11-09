@@ -1,0 +1,42 @@
+.activity-card {
+  width: $screen-width;
+  position: relative;
+  margin-bottom: 40px;
+
+  .thumbnial, .text-mark {
+    width: 100%;
+    height: 300px;
+  }
+
+  .mark-container {
+    width: 100%;
+    position: absolute;
+    height: 300px;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top,rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+
+  }
+
+  .text-wrapper {
+    height: 60px;
+    margin-top: 240px;
+    padding-left: 30px;
+  }
+
+  .activity-title {
+    color: #ff840a;
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+
+
+}
+
+.loading {
+  width:  750px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

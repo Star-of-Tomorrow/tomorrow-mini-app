@@ -56,7 +56,7 @@ export default function InstantaneousCard(props: InstantaneousCardProps): ReactE
       getUser(userId)
         .then((userData) => {
           console.log('用户数据 ==> %o', userData);
-          setUser(createUser());
+          setUser(userData);
         })
     }
   }, [userId])
@@ -98,9 +98,9 @@ export default function InstantaneousCard(props: InstantaneousCardProps): ReactE
         <Text className='publish-time'>{createTime}</Text>
         <View className='operation'>
           <LikeHeart infoId={String(informationId)} />
-          <View onClick={shareInstantaneous}>
+          {/* <View onClick={shareInstantaneous}>
             <IconFont name='share' />
-          </View>
+          </View> */}
         </View>
       </View>
     </View>
